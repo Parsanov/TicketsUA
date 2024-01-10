@@ -1,0 +1,62 @@
+﻿@model IEnumerable<TicketsUA.Models.Tickets>
+
+
+<section>
+    <div class="background-color-tikets">
+        <div class="container">
+            <div class="info-panel">
+                <div class="input-panel">
+                    <input type="text" class="input-text bor-radius-left" placeholder="Звідки">
+                    <input type="text" class="input-text" placeholder="Куди">
+                    <input type="date" class="date-input">
+                    <input type="date" class="date-input">
+                    <select class="spad-menu bor-radius-right">
+                        <option value="value1">Економ</option>
+                        <option value="value1">Комфорт</option>
+                        <option value="value2">Бізнес</option>
+                        <option value="value3">Перший клас</option>
+                    </select>
+                    <button type="submit" class="find-tickets-button">Знайти квитки</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    @if (Model != null)
+    {
+        @foreach (var ticket in Model)
+        {
+            <div class="background-color-card">
+                <div class="container">
+                    <div class="card">
+                        <div class="card-info">
+                            <p class="card-airline">British Airways</p>
+                            <p class="card-price">34 201₴</p>
+                            <div class="cities">
+                                <p class="departure-city">@ticket.StartAirport</p>
+                                <p>----></p>
+                                <p class="arrival-city">@ticket.EndAirport</p>
+                            </div>
+                            <div class="time-fly">
+                                <p class="card-time-departure">@ticket.DepartureDate</p>
+                                <p>----></p>
+                                <p class="card-duration-arrival">@ticket.ArrivalDate</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    }
+    else
+    {
+        <h1>Error! Is null!</h1>
+    }
+
+</section>
+
+
+
