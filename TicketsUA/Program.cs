@@ -12,11 +12,15 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<ITickets, TicketsRepositories>();
 
+builder.Services.AddAutoMapper(typeof(Program).Assembly);
+
+
 builder.Services.AddDbContext<AppDBContext>(options => 
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

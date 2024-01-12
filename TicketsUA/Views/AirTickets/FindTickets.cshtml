@@ -1,4 +1,5 @@
-﻿@model IEnumerable<TicketsUA.Models.Tickets>
+﻿@using TicketsUA.ViewModel
+@model List<Tickets>
 
 
 <section>
@@ -28,28 +29,119 @@
     {
         @foreach (var ticket in Model)
         {
-            <div class="background-color-card">
-                <div class="container">
-                    <div class="card">
-                        <div class="card-info">
-                            <p class="card-airline">British Airways</p>
-                            <p class="card-price">34 201₴</p>
-                            <div class="cities">
-                                <p class="departure-city">@ticket.StartAirport</p>
-                                <p>----></p>
-                                <p class="arrival-city">@ticket.EndAirport</p>
-                            </div>
-                            <div class="time-fly">
-                                <p class="card-time-departure">@ticket.DepartureDate</p>
-                                <p>----></p>
-                                <p class="card-duration-arrival">@ticket.ArrivalDate</p>
-                            </div>
+            <div class="center-wrapper">
+                <div class="card">
+                    <div class="info-cost">
+                        <div class="price">
+                            <h2 class="price-text">33000₴</h2>
+                        </div>
+                        <div class="submit-button">
+                            <button>Купити</button>
                         </div>
                     </div>
+                <div class="tickets">
+                    <div class="info-fly">
+                        <div class="departure">
+                            <div class="info-company">
+                                <div class="img-company">
+                                    <img class="logo-company" src="~/img/THYAO.IS-f22d40e8.png">
+                                </div>
+                                <div class="title-company">
+                                    <h3 class="text-title">Turkish AirLines</h3>
+                                </div>
+                                <div class="class-seat">
+                                    <h3 class="text-seat">@ticket.ClassSeat</h3>
+                                </div>
+                            </div>
+
+                            <div class="info-flight-time">
+                                <div class="time-departure">
+                                    <h2 class="text-time-departure">@ticket.DepartureDate.TimeOfDay.ToString("hh':'mm")</h2>
+                                </div>
+
+                                <div class="flight-time">
+                                    <h4 class="text-flight-time">2год 45хв</h4>
+                                </div>
+
+                                <div class="time-arrival">
+                                    <h2 class="text-time-arrival">@ticket.ArrivalDate.Value.TimeOfDay.ToString("hh':'mm")</h2>
+                                </div>
+                            </div>
+
+                            <div class="fly-time-line">
+                                <div class="flight-info">
+                                    <div class="flight-time">Час польоту: <span>2год 30хв</span></div>
+                                        <div class="flight-route">LO-335 Варшава - Париж</div>
+                                    </div>
+                            </div>
+
+                            <div class="title-airport">
+                                <div class="title-airport-departure">
+                                    <h3 class="text-airport-departure">@ticket.StartAirport</h3>
+                                </div>
+
+                                <div class="title-airport-departure">
+                                        <h3 class="text-airport-departure">@ticket.EndAirport</h3>
+                                </div>
+                            </div>
+
+                        </div>                        
+                    </div>
+
+                    <div class="horizontal-line"></div>
+
+                    <div class="info-fly">
+                        <div class="departure">
+                            <div class="info-company">
+                                <div class="img-company">
+                                    <img class="logo-company" src="~/img/THYAO.IS-f22d40e8.png">
+                                </div>
+                                <div class="title-company">
+                                    <h3 class="text-title">Turkish AirLines</h3>
+                                </div>
+                                <div class="class-seat">
+                                    <h3 class="text-seat">@ticket.ClassSeat</h3>
+                                </div>
+                            </div>
+
+                            <div class="info-flight-time">
+                                <div class="time-departure">
+                                    <h2 class="text-time-departure">@ticket.DepartureDate.TimeOfDay.ToString("hh':'mm")</h2>
+                                </div>
+
+                                <div class="flight-time">
+                                    <h4 class="text-flight-time">2год 45хв</h4>
+                                </div>
+
+                                <div class="time-arrival">
+                                    <h2 class="text-time-arrival">@ticket.ArrivalDate.Value.TimeOfDay.ToString("hh':'mm")</h2>
+                                </div>
+                            </div>
+
+                            <div class="fly-time-line">
+                                <div class="flight-info">
+                                    <div class="flight-time">Час польоту: <span>2год 30хв</span></div>
+                                        <div class="flight-route">LO-335 Варшава - Париж</div>
+                                    </div>
+                            </div>
+
+                            <div class="title-airport">
+                                <div class="title-airport-departure">
+                                    <h3 class="text-airport-departure">Варшава</h3>
+                                </div>
+
+                                <div class="title-airport-departure">
+                                    <h3 class="text-airport-departure">Париж</h3>
+                                </div>
+                            </div>
+
+                        </div>                        
+                    </div>
+
+                </div>
                 </div>
             </div>
         }
-
     }
     else
     {

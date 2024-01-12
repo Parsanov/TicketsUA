@@ -20,6 +20,16 @@ namespace TicketsUA.Repositories
             return await _appData.tickets.ToListAsync();
         }
 
+
+        public async Task<List<Tickets>> GetTickets(Tickets tickets)
+        {
+            var filteredTickets = await _appData.tickets
+                .Where(item => item.StartAirport == tickets.StartAirport && item.EndAirport == tickets.EndAirport)
+                .ToListAsync();
+
+            return filteredTickets;
+        }
+
         public bool Add(Tickets tickets)
         {
             _appData.Add(tickets);
@@ -53,5 +63,6 @@ namespace TicketsUA.Repositories
             _appData.Update(tickets);
             return Save();
         }
+
     }
 }

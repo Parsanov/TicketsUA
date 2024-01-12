@@ -1,0 +1,165 @@
+.center-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-height: 90vh;
+    margin: 20px;
+}
+
+.card {
+    cursor: pointer;
+    position: relative;
+    background-color: white;
+    border-radius: 25px;
+    display: flex;
+    width: 750px;
+    padding-right: 90px;
+    transition: 0.5s ease;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Додайте тінь тут */
+  }
+  
+.card:hover{
+    transition: 0.4s ease;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.4); 
+}
+
+.tickets{
+    min-width: 100%;
+}
+
+.horizontal-line{
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    z-index: 1;
+    width: 661px;
+    height: 2px;
+    background-color: #ccc;
+}
+
+  .info-flight-time{
+    margin-left: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.text-time-departure, .text-time-arrival{
+    margin: 0;
+    padding: 0;
+}
+
+.title-airport{
+    display: flex;
+}
+
+
+.logo-company{
+    width: 40px;
+}
+
+.text-seat{
+    padding: 0;
+    margin: 0;
+}
+
+.class-seat{
+    margin-left: 60px;
+    padding: 0;
+}
+
+.img-company{
+    float: left;
+    padding: 0 20px 0 0;
+}
+
+.info-fly{
+    margin: 0 0 0 30px;
+    max-width: 600px;
+    
+}
+
+.info-cost{
+    max-width: 810px;
+    padding-right: 15px;
+    border-right: 1px solid #ccc;
+}
+
+.fly-time-line{
+    position: relative;
+    cursor: pointer;
+    margin-left: 64px;
+    height: 4px;
+    background-color: rgba(255, 0, 0, 0.3);
+    max-width: 83vh;
+}
+
+.fly-time-line:hover{
+    background-color: rgba(255, 0, 0, 1);
+}
+
+.fly-time-line:hover .flight-info {
+    display: block;
+    left: 22vh;
+
+}
+.title-airport{
+    margin-left: 65px;
+    justify-content: space-between;
+}
+
+
+.flight-info {
+    position: absolute;
+    z-index: 2;
+    text-align: center;
+    margin-top: 5px;
+    display: none;
+    background-color: #333;
+    color: #fff;
+    max-width: 100vh;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.flight-time span {
+    font-weight: bold;
+}
+
+.flight-time {
+    justify-content: space-between;
+    float: left;
+}
+
+.flight-progress{
+    display: flex;
+}
+
+
+
+.submit-button{
+    text-align: center;
+}
+
+.submit-button button{
+    cursor: pointer;
+    margin-left: 18px;
+    border: none;
+    background-color: orange;
+    color: white;
+    width: 20vh;
+    height: 10vh;
+    border-radius: 15px;
+    font-size: 20px;
+}
+
+.submit-button:hover button{
+    transition: 0.3s;
+    background-color: rgb(255, 175, 70);
+}
+
+.price-text{
+    margin-left: 20px;
+    text-align: center;
+}
