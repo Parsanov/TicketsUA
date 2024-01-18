@@ -12,21 +12,25 @@
             <div class="info-panel">
                 <h1>Пошук дешевих авіаквитків</h1>
                 <div class="input-panel">
-                    <input asp-for="StartAirport" type="text" class="input-text bor-radius-left" placeholder="Звідки">
-                    <input asp-for="EndAirport" type="text" class="input-text" placeholder="Куди">
-                    <input asp-for="DepartureDate" type="date">
-                    <input asp-for="ArrivalDate" type="date">
-                    <select asp-for="ClassSeat" class="spad-menu bor-radius-right">
+                    <input asp-for="@Model.Ticket.StartAirport" type="text" class="input-text bor-radius-left" placeholder="Звідки">
+                    <input asp-for="@Model.Ticket.EndAirport" type="text" class="input-text" placeholder="Куди">
+                    <input asp-for="@Model.Ticket.DepartureDate" type="date">
+                    <input asp-for="@Model.Ticket.ArrivalDate" id="arrivalDate" type="date">
+                    <select asp-for="@Model.Ticket.ClassSeat" class="spad-menu bor-radius-right">
                         <option value="Економ">Економ</option>
                         <option value="Комфорт">Комфорт</option>
                         <option value="Бізнес">Бізнес</option>
                         <option value="Перший клас">Перший клас</option>
                     </select>
                     <button type="submit">Знайти квитки</button>
+                    <div class="cntr">
+                        <input type="checkbox" id="cbx" class="cbx">
+                        <label for="cbx" class="lbl">Зворотний квиток не потрібен</label>
+                    </div>
                 </div>
             </div>
         </div>
+
     </div>
 </form>
-
 

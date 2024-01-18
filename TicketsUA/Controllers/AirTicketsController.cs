@@ -13,26 +13,49 @@ namespace TicketsUA.Controllers
         private readonly ITickets _tickets;
         private readonly IMapper _mapper;
 
-        public AirTicketsController(ITickets tickets, AppDBContext context, IMapper mapper)
+        public AirTicketsController(ITickets tickets, IMapper mapper)
         {
             _tickets = tickets;
             _mapper = mapper;
         }
 
-        public async Task<IActionResult> Index()
-        {
+        public async Task<IActionResult> Index() 
+        { 
             return View();
         }
 
 
-        public async Task<IActionResult> FindTickets(Tickets tickets)
+        public async Task<IActionResult> FindTickets([FromForm] TicketsVM ticketsVM)
         {
-            var allTickets = await _tickets.GetAll();
-            var find = allTickets
-                .Where(ti => ti.StartAirport == tickets.StartAirport && ti.EndAirport == tickets.EndAirport)
-                .ToList();
 
-            return View(find);
+            if (ticketsVM.Ticket.ArrivalDate is null)
+            {
+                ticketsVM.ArrivalDateExist = false;
+                var tickets = await _tickets.FindTicketsLeave(ticketsVM);
+
+                var leaveTickets = new TicketsVM
+                {
+                    TicketsLeave = tickets,
+                    ArrivalDateExist = ticketsVM.ArrivalDateExist
+                };
+
+                return View(leaveTickets);
+
+            }
+
+
+            var ticketsLeave = await _tickets.FindTicketsLeave(ticketsVM);
+            var ticketsComeBack = await _tickets.FindTicketsComeBack(ticketsVM);
+
+
+            var ticVM = new TicketsVM
+            {
+                TicketsLeave = ticketsLeave,
+                TicketsComeBack = ticketsComeBack,
+                ArrivalDateExist = ticketsVM.ArrivalDateExist
+            };
+
+            return View(ticVM);
         }
 
 

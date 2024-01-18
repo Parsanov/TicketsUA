@@ -12,8 +12,8 @@ using TicketsUA.Data;
 namespace TicketsUA.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20240110203430_AddNewDataBase")]
-    partial class AddNewDataBase
+    [Migration("20240115220903_325236236236")]
+    partial class _325236236236
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -46,6 +46,12 @@ namespace TicketsUA.Migrations
                     b.Property<string>("EndAirport")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<TimeSpan>("FlightTime")
+                        .HasColumnType("time");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
 
                     b.Property<string>("StartAirport")
                         .IsRequired()

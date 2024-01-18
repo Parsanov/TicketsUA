@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace TicketsUA.Migrations
 {
     /// <inheritdoc />
-    public partial class @base : Migration
+    public partial class _325236236236 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -21,7 +21,9 @@ namespace TicketsUA.Migrations
                     EndAirport = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DepartureDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ArrivalDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ClassSeat = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    ClassSeat = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Price = table.Column<double>(type: "float", nullable: false),
+                    FlightTime = table.Column<TimeSpan>(type: "time", nullable: false)
                 },
                 constraints: table =>
                 {

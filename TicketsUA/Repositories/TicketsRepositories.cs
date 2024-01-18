@@ -2,6 +2,7 @@
 using TicketsUA.Data;
 using TicketsUA.Interfaces;
 using TicketsUA.Models;
+using TicketsUA.ViewModel;
 
 namespace TicketsUA.Repositories
 {
@@ -15,20 +16,44 @@ namespace TicketsUA.Repositories
         }
 
 
-        async Task<IEnumerable<Tickets>> ITickets.GetAll()
+
+        public async Task<List<Tickets>> FindTicketsComeBack(TicketsVM ticketsVM)
+        {
+
+            var tickets = await GetAll();
+
+            var find = tickets.Where(tic => tic.EndAirport == ticketsVM.Ticket.StartAirport &&
+                                            tic.StartAirport == ticketsVM.Ticket.EndAirport &&
+                                            tic.ArrivalDate.Value.Date == ticketsVM.Ticket.ArrivalDate.Value.Date &&
+                                            tic.ClassSeat == ticketsVM.Ticket.ClassSeat).ToList();
+
+            return find;
+        }
+
+        public async Task<List<Tickets>> FindTicketsLeave(TicketsVM ticketsVM)
+        {
+            var tickets = await GetAll();
+
+            var find = tickets.Where(tic => tic.StartAirport == ticketsVM.Ticket.StartAirport &&
+                                                tic.EndAirport == ticketsVM.Ticket.EndAirport &&
+                                                tic.DepartureDate.Date == ticketsVM.Ticket.DepartureDate.Date &&
+                                                tic.ClassSeat == ticketsVM.Ticket.ClassSeat).ToList();
+
+            return find;
+        }
+
+
+
+        public async Task<IEnumerable<Tickets>> GetAll()
         {
             return await _appData.tickets.ToListAsync();
         }
 
-
-        public async Task<List<Tickets>> GetTickets(Tickets tickets)
+        public async Task<Tickets> GetTiketsById(int id)
         {
-            var filteredTickets = await _appData.tickets
-                .Where(item => item.StartAirport == tickets.StartAirport && item.EndAirport == tickets.EndAirport)
-                .ToListAsync();
-
-            return filteredTickets;
+            return await _appData.tickets.FirstOrDefaultAsync(i => i.Id == id);
         }
+
 
         public bool Add(Tickets tickets)
         {
@@ -40,16 +65,6 @@ namespace TicketsUA.Repositories
         {
             _appData.Remove(tickets);
             return Save();
-        }
-
-        public async Task<List<Tickets>> GetAll()
-        {
-            return await _appData.tickets.ToListAsync();
-        }
-
-        public async Task<Tickets> GetTiketsById(int id)
-        {
-            return await _appData.tickets.FirstOrDefaultAsync(i => i.Id == id);
         }
 
         public bool Save()

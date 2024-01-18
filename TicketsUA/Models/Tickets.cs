@@ -8,5 +8,7 @@
         public DateTime DepartureDate { get; set; }
         public DateTime? ArrivalDate { get; set; }
         public string ClassSeat { get; set; }
+        public double Price { get; set; }
+        public TimeSpan FlightTime { get; set; }
     }
 }

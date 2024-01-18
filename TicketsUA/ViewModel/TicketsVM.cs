@@ -1,11 +1,12 @@
-﻿namespace TicketsUA.ViewModel
+﻿using TicketsUA.Models;
+
+namespace TicketsUA.ViewModel
 {
     public class TicketsVM
     {
-        public string StartAirport { get; set; }
-        public string EndAirport { get; set; }
-        public DateTime DepartureDate { get; set; }
-        public DateTime? ArrivalDate { get; set; }
-        public string ClassSeat { get; set; }
+        public List<Tickets> TicketsLeave { get; set; }
+        public List<Tickets> TicketsComeBack { get; set; }
+        public Tickets Ticket { get; set; }
+        public bool ArrivalDateExist { get; set; } = true;
     }
 }

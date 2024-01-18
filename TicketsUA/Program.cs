@@ -21,6 +21,7 @@ builder.Services.AddDbContext<AppDBContext>(options =>
 });
 var app = builder.Build();
 
+//await Seed.SeedData(app);
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

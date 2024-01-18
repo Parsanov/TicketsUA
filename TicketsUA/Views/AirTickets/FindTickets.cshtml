@@ -1,146 +1,223 @@
 ﻿@using TicketsUA.ViewModel
-@model List<Tickets>
+@model TicketsVM
 
 
 <section>
-    <div class="background-color-tikets">
-        <div class="container">
-            <div class="info-panel">
-                <div class="input-panel">
-                    <input type="text" class="input-text bor-radius-left" placeholder="Звідки">
-                    <input type="text" class="input-text" placeholder="Куди">
-                    <input type="date" class="date-input">
-                    <input type="date" class="date-input">
-                    <select class="spad-menu bor-radius-right">
-                        <option value="value1">Економ</option>
-                        <option value="value1">Комфорт</option>
-                        <option value="value2">Бізнес</option>
-                        <option value="value3">Перший клас</option>
-                    </select>
-                    <button type="submit" class="find-tickets-button">Знайти квитки</button>
+    <form asp-action="FindTickets" method="post">
+        <div class="background-color-tikets">
+            <div class="conteiner">
+                <div class="info-panel">
+                    <div class="input-panel">
+                        <input asp-for="@Model.Ticket.StartAirport" type="text" class="input-text bor-radius-left" placeholder="Звідки">
+                        <input asp-for="@Model.Ticket.EndAirport" type="text" class="input-text" placeholder="Куди">
+                        <input asp-for="@Model.Ticket.DepartureDate" type="date">
+                        <input asp-for="@Model.Ticket.ArrivalDate" id="arrivalDate" type="date">
+                        <select asp-for="@Model.Ticket.ClassSeat" class="spad-menu bor-radius-right">
+                            <option value="Економ">Економ</option>
+                            <option value="Комфорт">Комфорт</option>
+                            <option value="Бізнес">Бізнес</option>
+                            <option value="Перший клас">Перший клас</option>
+                        </select>
+                        <button type="submit">Знайти квитки</button>
+                        <div class="cntr">
+                            <input type="checkbox" id="cbx" class="cbx">
+                            <label for="cbx" class="lbl">Зворотний квиток не потрібен</label>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
 </section>
 
 <section>
     @if (Model != null)
     {
-        @foreach (var ticket in Model)
+        @if (Model.ArrivalDateExist == true)
         {
-            <div class="center-wrapper">
-                <div class="card">
-                    <div class="info-cost">
-                        <div class="price">
-                            <h2 class="price-text">33000₴</h2>
+            @foreach (var (TicketsLeave, TicketsComeBack) in Model.TicketsLeave.Zip(Model.TicketsComeBack, (c1, c2) => (c1, c2)))
+            {
+                <div class="center-wrapper">
+                    <div class="card">
+                        <div class="info-cost">
+                            <div class="price">
+                                <h2 class="price-text">@TicketsLeave.Price$</h2>
+                            </div>
+                            <div class="submit-button">
+                                <button>Купити</button>
+                            </div>
                         </div>
-                        <div class="submit-button">
-                            <button>Купити</button>
+                        <div class="tickets">
+                            <div class="info-fly">
+                                <div class="departure">
+                                    <div class="info-company">
+                                        <div class="img-company">
+                                            <img class="logo-company" src="~/img/British_Airways-logo.png">
+                                        </div>
+                                        <div class="title-company">
+                                            <h3 class="text-title">Turkish AirLines</h3>
+                                        </div>
+                                        <div class="class-seat">
+                                            <h3 class="text-seat">@TicketsLeave.ClassSeat</h3>
+                                        </div>
+                                    </div>
+
+                                    <div class="info-flight-time">
+                                        <div class="time-departure">
+                                            <h2 class="text-time-departure">@TicketsLeave.DepartureDate.TimeOfDay.ToString("hh':'mm")</h2>
+                                        </div>
+
+                                        <div class="flight-time">
+                                            <h4 class="text-flight-time">@TicketsLeave.FlightTime</h4>
+                                        </div>
+
+                                        <div class="time-arrival">
+                                            <h2 class="text-time-arrival">@TicketsLeave.ArrivalDate.Value.TimeOfDay.ToString("hh':'mm")</h2>
+                                        </div>
+                                    </div>
+
+                                    <div class="fly-time-line">
+                                        <div class="flight-info">
+                                            <div class="flight-time">Час польоту: <span>@TicketsLeave.FlightTime</span></div>
+                                            <div class="flight-route">@TicketsLeave.StartAirport - @TicketsLeave.EndAirport</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="title-airport">
+                                        <div class="title-airport-departure">
+                                            <h3 class="text-airport-departure">@TicketsLeave.StartAirport</h3>
+                                        </div>
+
+                                        <div class="title-airport-departure">
+                                            <h3 class="text-airport-departure">@TicketsLeave.EndAirport</h3>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <div class="horizontal-line"></div>
+                            <div class="info-fly">
+                                <div class="departure">
+                                    <div class="info-company">
+                                        <div class="img-company">
+                                            <img class="logo-company" src="~/img/skyup-airlines-logo.png">
+                                        </div>
+                                        <div class="title-company">
+                                            <h3 class="text-title">Turkish AirLines</h3>
+                                        </div>
+                                        <div class="class-seat">
+                                            <h3 class="text-seat">@TicketsComeBack.ClassSeat</h3>
+                                        </div>
+                                    </div>
+
+                                    <div class="info-flight-time">
+                                        <div class="time-departure">
+                                            <h2 class="text-time-departure">@TicketsComeBack.DepartureDate.TimeOfDay.ToString("hh':'mm")</h2>
+                                        </div>
+
+                                        <div class="flight-time">
+                                            <h4 class="text-flight-time">@TicketsComeBack.FlightTime.ToString("hh':'mm")</h4>
+                                        </div>
+
+                                        <div class="time-arrival">
+                                            <h2 class="text-time-arrival">@TicketsComeBack.ArrivalDate.Value.TimeOfDay.ToString("hh':'mm")</h2>
+                                        </div>
+                                    </div>
+
+                                    <div class="fly-time-line">
+                                        <div class="flight-info">
+                                            <div class="flight-time">Час польоту: <span>@TicketsComeBack.FlightTime.ToString("hh':'mm")</span></div>
+                                            <div class="flight-route">@TicketsComeBack.StartAirport - @TicketsComeBack.EndAirport</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="title-airport">
+                                        <div class="title-airport-departure">
+                                            <h3 class="text-airport-departure">@TicketsComeBack.StartAirport</h3>
+                                        </div>
+
+                                        <div class="title-airport-departure">
+                                            <h3 class="text-airport-departure">@TicketsComeBack.EndAirport</h3>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
                         </div>
                     </div>
-                <div class="tickets">
-                    <div class="info-fly">
-                        <div class="departure">
-                            <div class="info-company">
-                                <div class="img-company">
-                                    <img class="logo-company" src="~/img/THYAO.IS-f22d40e8.png">
-                                </div>
-                                <div class="title-company">
-                                    <h3 class="text-title">Turkish AirLines</h3>
-                                </div>
-                                <div class="class-seat">
-                                    <h3 class="text-seat">@ticket.ClassSeat</h3>
-                                </div>
-                            </div>
-
-                            <div class="info-flight-time">
-                                <div class="time-departure">
-                                    <h2 class="text-time-departure">@ticket.DepartureDate.TimeOfDay.ToString("hh':'mm")</h2>
-                                </div>
-
-                                <div class="flight-time">
-                                    <h4 class="text-flight-time">2год 45хв</h4>
-                                </div>
-
-                                <div class="time-arrival">
-                                    <h2 class="text-time-arrival">@ticket.ArrivalDate.Value.TimeOfDay.ToString("hh':'mm")</h2>
-                                </div>
-                            </div>
-
-                            <div class="fly-time-line">
-                                <div class="flight-info">
-                                    <div class="flight-time">Час польоту: <span>2год 30хв</span></div>
-                                        <div class="flight-route">LO-335 Варшава - Париж</div>
-                                    </div>
-                            </div>
-
-                            <div class="title-airport">
-                                <div class="title-airport-departure">
-                                    <h3 class="text-airport-departure">@ticket.StartAirport</h3>
-                                </div>
-
-                                <div class="title-airport-departure">
-                                        <h3 class="text-airport-departure">@ticket.EndAirport</h3>
-                                </div>
-                            </div>
-
-                        </div>                        
-                    </div>
-
-                    <div class="horizontal-line"></div>
-
-                    <div class="info-fly">
-                        <div class="departure">
-                            <div class="info-company">
-                                <div class="img-company">
-                                    <img class="logo-company" src="~/img/THYAO.IS-f22d40e8.png">
-                                </div>
-                                <div class="title-company">
-                                    <h3 class="text-title">Turkish AirLines</h3>
-                                </div>
-                                <div class="class-seat">
-                                    <h3 class="text-seat">@ticket.ClassSeat</h3>
-                                </div>
-                            </div>
-
-                            <div class="info-flight-time">
-                                <div class="time-departure">
-                                    <h2 class="text-time-departure">@ticket.DepartureDate.TimeOfDay.ToString("hh':'mm")</h2>
-                                </div>
-
-                                <div class="flight-time">
-                                    <h4 class="text-flight-time">2год 45хв</h4>
-                                </div>
-
-                                <div class="time-arrival">
-                                    <h2 class="text-time-arrival">@ticket.ArrivalDate.Value.TimeOfDay.ToString("hh':'mm")</h2>
-                                </div>
-                            </div>
-
-                            <div class="fly-time-line">
-                                <div class="flight-info">
-                                    <div class="flight-time">Час польоту: <span>2год 30хв</span></div>
-                                        <div class="flight-route">LO-335 Варшава - Париж</div>
-                                    </div>
-                            </div>
-
-                            <div class="title-airport">
-                                <div class="title-airport-departure">
-                                    <h3 class="text-airport-departure">Варшава</h3>
-                                </div>
-
-                                <div class="title-airport-departure">
-                                    <h3 class="text-airport-departure">Париж</h3>
-                                </div>
-                            </div>
-
-                        </div>                        
-                    </div>
-
                 </div>
+            }
+        }
+
+
+        else if (Model.ArrivalDateExist == false)
+        {
+            @foreach (var TicketsLeave in Model.TicketsLeave)
+            {
+                <div class="center-wrapper">
+                    <div class="card">
+                        <div class="info-cost">
+                            <div class="price">
+                                <h2 class="price-text">@TicketsLeave.Price$</h2>
+                            </div>
+                            <div class="submit-button">
+                                <button>Купити</button>
+                            </div>
+                        </div>
+                        <div class="tickets">
+                            <div class="info-fly">
+                                <div class="departure">
+                                    <div class="info-company">
+                                        <div class="img-company">
+                                            <img class="logo-company" src="~/img/skyup-airlines-logo.png">
+                                        </div>
+                                        <div class="title-company">
+                                            <h3 class="text-title">Turkish AirLines</h3>
+                                        </div>
+                                        <div class="class-seat">
+                                            <h3 class="text-seat">@TicketsLeave.ClassSeat</h3>
+                                        </div>
+                                    </div>
+
+                                    <div class="info-flight-time">
+                                        <div class="time-departure">
+                                            <h2 class="text-time-departure">@TicketsLeave.DepartureDate.TimeOfDay.ToString("hh':'mm")</h2>
+                                        </div>
+
+                                        <div class="flight-time">
+                                            <h4 class="text-flight-time">@TicketsLeave.FlightTime</h4>
+                                        </div>
+
+                                        <div class="time-arrival">
+                                            <h2 class="text-time-arrival">@TicketsLeave.ArrivalDate.Value.TimeOfDay.ToString("hh':'mm")</h2>
+                                        </div>
+                                    </div>
+
+                                    <div class="fly-time-line">
+                                        <div class="flight-info">
+                                            <div class="flight-time">Час польоту: <span>@TicketsLeave.FlightTime</span></div>
+                                            <div class="flight-route">@TicketsLeave.StartAirport - @TicketsLeave.EndAirport</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="title-airport">
+                                        <div class="title-airport-departure">
+                                            <h3 class="text-airport-departure">@TicketsLeave.StartAirport</h3>
+                                        </div>
+
+                                        <div class="title-airport-departure">
+                                            <h3 class="text-airport-departure">@TicketsLeave.EndAirport</h3>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            }
         }
     }
     else

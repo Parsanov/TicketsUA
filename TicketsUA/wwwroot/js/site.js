@@ -1,4 +1,11 @@
-﻿// Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿const arrivalDate = document.getElementById('arrivalDate');
 
-// Write your JavaScript code.
+document.getElementById('cbx').addEventListener('change', function () {
+    if (this.checked) {
+        arrivalDate.style.display = 'none';
+        arrivalDate.value = null;
+    }
+    else {
+        arrivalDate.style.display = 'inline-block';
+    }
+});

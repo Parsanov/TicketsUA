@@ -44,6 +44,12 @@ namespace TicketsUA.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<TimeSpan>("FlightTime")
+                        .HasColumnType("time");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
                     b.Property<string>("StartAirport")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
