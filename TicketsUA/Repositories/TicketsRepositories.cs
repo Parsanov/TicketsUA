@@ -34,10 +34,10 @@ namespace TicketsUA.Repositories
         {
             var tickets = await GetAll();
 
-            var find = tickets.Where(tic => tic.StartAirport == ticketsVM.Ticket.StartAirport &&
-                                                tic.EndAirport == ticketsVM.Ticket.EndAirport &&
-                                                tic.DepartureDate.Date == ticketsVM.Ticket.DepartureDate.Date &&
-                                                tic.ClassSeat == ticketsVM.Ticket.ClassSeat).ToList();
+            var find = tickets.Where(tic => tic.StartAirport == ticketsVM.Ticket.StartAirport && 
+                                    tic.EndAirport == ticketsVM.Ticket.EndAirport &&
+                                    tic.DepartureDate.Date == ticketsVM.Ticket.DepartureDate.Date &&
+                                    tic.ClassSeat == ticketsVM.Ticket.ClassSeat).ToList();
 
             return find;
         }

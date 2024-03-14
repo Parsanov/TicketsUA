@@ -10,5 +10,9 @@
         public string ClassSeat { get; set; }
         public double Price { get; set; }
         public TimeSpan FlightTime { get; set; }
+        public string AirCompanyName { get; set; }
+        public string UrlCompanyLogo { get; set; }
+
+
     }
 }

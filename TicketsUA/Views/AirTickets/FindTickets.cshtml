@@ -31,7 +31,7 @@
 </section>
 
 <section>
-    @if (Model != null)
+    @if (Model.TicketsLeave.Count != 0 && Model.TicketsLeave != null)
     {
         @if (Model.ArrivalDateExist == true)
         {
@@ -44,7 +44,7 @@
                                 <h2 class="price-text">@TicketsLeave.Price$</h2>
                             </div>
                             <div class="submit-button">
-                                <button>Купити</button>
+                                <a asp-controller="AirTickets" asp-action="TicketsView" asp-route-id="@TicketsLeave.Id"><button>Обрати квиток</button></a>
                             </div>
                         </div>
                         <div class="tickets">
@@ -163,18 +163,27 @@
                                 <h2 class="price-text">@TicketsLeave.Price$</h2>
                             </div>
                             <div class="submit-button">
-                                <button>Купити</button>
+                                <a asp-controller="AirTickets" asp-action="TicketsView" asp-route-id="@TicketsLeave.Id"><button>Обрати квиток</button></a>
                             </div>
                         </div>
                         <div class="tickets">
                             <div class="info-fly">
                                 <div class="departure">
                                     <div class="info-company">
-                                        <div class="img-company">
-                                            <img class="logo-company" src="~/img/skyup-airlines-logo.png">
-                                        </div>
+                                        @if (@TicketsLeave.UrlCompanyLogo == null)
+                                        {
+                                            <div class="img-company">
+                                                <img class="logo-company" src="~/img/skyup-airlines-logo.png">
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="img-company">
+                                                <img class="logo-company" src="@TicketsLeave.UrlCompanyLogo">
+                                            </div>
+                                        }
                                         <div class="title-company">
-                                            <h3 class="text-title">Turkish AirLines</h3>
+                                            <h3 class="text-title">@TicketsLeave.AirCompanyName</h3>
                                         </div>
                                         <div class="class-seat">
                                             <h3 class="text-seat">@TicketsLeave.ClassSeat</h3>
@@ -187,7 +196,7 @@
                                         </div>
 
                                         <div class="flight-time">
-                                            <h4 class="text-flight-time">@TicketsLeave.FlightTime</h4>
+                                            <h4 class="text-flight-time">@(TicketsLeave.FlightTime.ToString("hh':'mm") + " час польоту")</h4>
                                         </div>
 
                                         <div class="time-arrival">

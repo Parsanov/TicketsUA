@@ -108,7 +108,7 @@ body {
 }
 
 
-.input-panel button {
+.input-panel a {
     cursor: pointer;
     margin-left: 10px;
     border-radius: 5px;
@@ -122,7 +122,7 @@ body {
 }
 
 
-    .input-panel button:hover {
+    .input-panel a:hover {
         background-color: #f18701;
     }
 

@@ -1,0 +1,67 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;900&display=swap');
+
+
+.main-info{
+    font-family: 'Roboto' sans-serif;
+    font-weight: 500;
+}
+
+.departure-airport{
+    display: flex;
+}
+
+
+.flight {
+    margin-left: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.time-fly{
+    display: flex;
+}
+
+.airIcons{
+    width: 20px;
+    height: 20px;
+    margin: 0 20px 0 0;
+}
+
+.vertical-line {
+    border: solid 1px black;
+    height: 200px; 
+    width: 1px; 
+    background-color: black;
+}
+
+
+
+.buy-info{
+    margin-top: 150px;
+    display: flex;  
+}
+
+.price{
+   margin-right: 30px;
+}
+
+.buy-button{
+    margin-top: 10px;
+    font-weight: 500;
+    color: white;
+    background-color: #f35b04;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 150px;
+    cursor: pointer;
+    border-radius:  15px;
+}
+
+
+.buy-button:hover{
+   background-color: #f18701;
+}

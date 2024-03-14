@@ -25,6 +25,16 @@ namespace TicketsUA.Controllers
         }
 
 
+        public async Task<IActionResult> TicketsView(int id)
+        {
+
+            var tickets = await _tickets.GetTiketsById(id);
+
+            return View(tickets);
+
+        }
+
+
         public async Task<IActionResult> FindTickets([FromForm] TicketsVM ticketsVM)
         {
 

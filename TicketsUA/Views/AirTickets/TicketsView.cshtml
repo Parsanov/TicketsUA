@@ -1,0 +1,37 @@
+﻿@model Tickets
+
+
+
+<div class="container">
+    <div class="main-info">
+        <div class="departure-airport">
+            <h2><img class="airIcons" src="~/icons/airplaneIcons/AirPlaneDeparture.png" alt="">@Model.StartAirport</h2>
+        </div>
+            <div class="time-fly">
+                <div class="vertical-line"></div>
+
+                <div class="flight">
+                <div class="departure-time">@Model.DepartureDate.ToString("hh:mm")</div>
+                <div class="fly-time">@(Model.FlightTime.ToString("hh':'mm") + " час польоту")</div>
+                <div class="arrival-time">@Model.ArrivalDate.Value.TimeOfDay.ToString("hh':'mm")</div>
+                </div>
+                
+            </div>
+        <div class="arrival-airport">
+            <h2><img class="airIcons" src="~/icons/airplaneIcons/AirPlaneArrival.png" alt=""> @Model.EndAirport</h2>
+        </div>
+    </div>
+
+    <div class="buy-info">
+        <div class="price"><h2>@Model.Price$</h2></div>
+        <div class="buy-button">Купити</div>
+    </div>
+
+
+
+</div>
+   
+    
+
+
+
