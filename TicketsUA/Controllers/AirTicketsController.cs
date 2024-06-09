@@ -11,12 +11,10 @@ namespace TicketsUA.Controllers
     public class AirTicketsController : Controller
     {
         private readonly ITickets _tickets;
-        private readonly IMapper _mapper;
 
-        public AirTicketsController(ITickets tickets, IMapper mapper)
+        public AirTicketsController(ITickets tickets)
         {
             _tickets = tickets;
-            _mapper = mapper;
         }
 
         public async Task<IActionResult> Index() 

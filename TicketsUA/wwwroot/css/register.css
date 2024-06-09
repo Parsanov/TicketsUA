@@ -1,0 +1,58 @@
+/* Основні стилі контейнера */
+.registration-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Висота вікна перегляду */
+  }
+  
+  .form-container {
+    background-color: #f2f2f2;
+    padding: 40px; /* Збільшено відступи */
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 500px; /* Збільшено ширину */
+  }
+  
+  /* Стилі для заголовка форми */
+  .form-container h1 {
+    color: #333;
+    margin-bottom: 30px; /* Збільшено відстань під заголовком */
+    font-size: 32px; /* Збільшено розмір шрифту */
+  }
+  
+  /* Стилі групи введення */
+  .input-group {
+    margin-bottom: 20px; /* Збільшено відстань між полями */
+  }
+  
+  .input-group label {
+    display: block;
+    margin-bottom: 10px; /* Збільшено відстань під міткою */
+    font-size: 18px; /* Збільшено розмір шрифту міток */
+  }
+  
+  .input-group input {
+    width: 100%;
+    padding: 15px; /* Збільшено padding */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px; /* Збільшено розмір шрифту для введення */
+  }
+  
+  /* Стилі кнопки */
+  .submit-button {
+    background-color: #4CAF50; /* Зелений */
+    color: white;
+    padding: 15px 20px; /* Збільшено padding */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px; /* Збільшено розмір шрифту кнопки */
+    margin-top: 10px; /* Додано відстань зверху */
+  }
+  
+  .submit-button:hover {
+    background-color: #45a049;
+  }
